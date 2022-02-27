@@ -13,10 +13,8 @@ resource "aws_instance" "jhansi-ec2-instance" {
     key_name= "aws_key"
     vpc_security_group_ids = [aws_security_group.main.id]
   provisioner "remote-exec" {
-    inline = [
-      "touch hello.txt",
-      "echo helloworld remote provisioner >> hello.txt",
-    ]   
+    inline = ["sudo yum update -y", "sudo yum install httpd -y", "echo Done!"
+  ]
 }
   connection {
       type        = "ssh"
